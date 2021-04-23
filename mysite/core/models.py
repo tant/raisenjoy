@@ -33,7 +33,7 @@ class Wager(models.Model):
     name = models.CharField(max_length=100)
     race = models.ForeignKey('Race', models.SET_NULL, blank=True, null=True)
     racer1 = models.ForeignKey('Racer', on_delete=models.CASCADE, related_name='topdog_racer') 
-    racer2 = models.ForeignKey('Racer', on_delete=models.CASCADE,blank=True,related_name='underdog_racer')
+    racer2 = models.ForeignKey('Racer', on_delete=models.CASCADE, null=True, blank=True, related_name='underdog_racer')
     content = models.TextField()
 
     # Methods
@@ -43,7 +43,7 @@ class Wager(models.Model):
 
 class Bet(models.Model):
     PLACE_CHOICES = [
-        ('t', 'Initializing'),
+        ('t', 'Favorite Dog'),
         ('u', 'Outsider'),
     ]
     STATUS_CHOICES = [
