@@ -4,7 +4,7 @@ from django.db import models
 class Race(models.Model):
     # Fields
     name = models.CharField(blank=False,max_length=100) # Tên giải
-    date = models.DateField(blank=False) #ngày xảy ra 
+    date = models.DateField(blank=False) #ngày xảy ra sự kiện
     info = models.TextField(blank=True) #thông tin giải
 
     
@@ -14,10 +14,10 @@ class Race(models.Model):
 
     # Methods
     def __str__(self):
-        return self.name + ' ' + self.date # Có thể phải format lại date cho dễ nhìn
+        return self.name + '@' + self.date.strftime('%A %b %d %Y') # Có thể phải format lại date cho dễ nhìn
 
 
-class Racer:
+class Racer(models.Model):
     # Fields
     name = models.CharField(blank=False,max_length=100) # Tên vận động viên/team
     avatar = models.ImageField() # hình đại diện
@@ -28,12 +28,12 @@ class Racer:
     def __str__(self):
         return self.name
 
-class Wager:
+class Wager(models.Model):
     # Fields
     name = models.CharField(max_length=100)
     race = models.ForeignKey('Race', models.SET_NULL, blank=True, null=True)
-    racer1 = models.ForeignKey('Racer', on_delete=models.CASCADE) 
-    racer2 = models.ForeignKey('Racer', on_delete=models.CASCADE,blank=True)
+    racer1 = models.ForeignKey('Racer', on_delete=models.CASCADE, related_name='topdog_racer') 
+    racer2 = models.ForeignKey('Racer', on_delete=models.CASCADE,blank=True,related_name='underdog_racer')
     content = models.TextField()
 
     # Methods
@@ -41,7 +41,7 @@ class Wager:
         return self.name
 
 
-class Bet:
+class Bet(models.Model):
     PLACE_CHOICES = [
         ('t', 'Initializing'),
         ('u', 'Outsider'),
@@ -58,3 +58,6 @@ class Bet:
     place = models.CharField(max_length=1, choices=PLACE_CHOICES, default='t')
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='i')
 
+    # Methods
+    def __str__(self):
+        return ""
