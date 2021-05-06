@@ -1,6 +1,6 @@
 # raisenjoy
 Cài python
-
+```
 # Make sure we have an up-to-date version of pip and setuptools:
 python -m pip install --upgrade pip setuptools
 
@@ -12,7 +12,7 @@ pip install Pillow
 pip install djangorestframework
 pip install markdown       # Markdown support for the browsable API.
 pip install django-filter  # Filtering support
-
+```
 clone repo về
 
 vào thư mục mysite chạy lệnh python manage.py runserver là xong
