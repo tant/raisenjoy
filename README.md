@@ -16,3 +16,5 @@ pip install django-filter  # Filtering support
 clone repo về
 
 vào thư mục mysite chạy lệnh python manage.py runserver là xong
+
+test repo
