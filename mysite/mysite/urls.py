@@ -16,8 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Phải xử lý các url sau
+# /admin
+# /api
+# /api/races
+# /api/races/add
+# /api/racers
+# /api/racers/add
+# /api/bets
+# /api/bets/add
+
+# Bài 1, tìm cách làm API cho race
+
+
+
 urlpatterns = [
 
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')) // coi lại cái này
+#    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
+    path('api/', include('api.urls')), # Kéo chú urls của api vào 
 ]
