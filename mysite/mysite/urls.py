@@ -17,30 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views import debug
 
-# Phải xử lý các url sau
-# /admin
-# /api
-# /api/races
-# /api/races/add
-# /api/racers
-# /api/racers/add
-# /api/bets
-# /api/bets/add
-
-# Bài 1, tìm cách làm API cho race
-
-
-
-router = routers.DefaultRouter()
-
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewset)
-router.register(r'bet', BetViewset)
-
 urlpatterns = [
     path('', debug.default_urlconf),
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')), # Kéo chú urls của api vào 
+    path('api/', include('core.urls')), # Dùng urls.py của core để xử lý tiếp
 ]
 
-urlpatterns += router.urls

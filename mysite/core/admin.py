@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Race, Racer, Bet
-
+from .models import * # Lấy hết model đem vô đây
 
 # Register your models here.
 admin.site.register(Race)
