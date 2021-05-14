@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+#from core.models import Bet
 
 # Serializers define the API representation.
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
@@ -12,3 +14,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
+
+class BetSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+#        model = Bet
+        fields = ['player','content']

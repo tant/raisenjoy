@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views import debug
 
 # Phải xử lý các url sau
 # /admin
@@ -30,9 +31,16 @@ from django.urls import path, include
 
 
 
-urlpatterns = [
+router = routers.DefaultRouter()
 
-#    path('admin/', admin.site.urls),
-    path('', admin.site.urls),
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewset)
+router.register(r'bet', BetViewset)
+
+urlpatterns = [
+    path('', debug.default_urlconf),
+    path('admin/', admin.site.urls),
     path('api/', include('api.urls')), # Kéo chú urls của api vào 
 ]
+
+urlpatterns += router.urls
